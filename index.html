@@ -163,7 +163,6 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
-
         }
 
         .ourbtn>button {
@@ -207,12 +206,17 @@
         $("#postingbtn").click(async function () {
             let goal = $('#goal').val();
 
-            let doc = {
-                'goal': goal
-            };
-            await addDoc(collection(db, "goals"), doc);
-            alert('등록 완료!');
-            window.location.reload();
+            if(goal == ''){
+                alert('입력한 내용이 없습니다.');
+            }else{
+                let doc = {
+                    'goal': goal
+                };
+                await addDoc(collection(db, "goals"), doc);
+                alert('등록 완료!');
+                window.location.reload();
+            }
+
         })
 
         $('#goalsContainer').empty();
